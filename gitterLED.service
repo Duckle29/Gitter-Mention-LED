@@ -1,0 +1,10 @@
+[Unit]
+Description=A gitter Mention notifier
+After=multi-user.target
+
+[Service]
+Type=idle
+ExecStart=/usr/bin/python3 /home/pi/Gitter-Mention-LED/main.py
+
+[Install]
+WantedBy=multi-user.target

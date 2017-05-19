@@ -12,6 +12,13 @@ To install, first enter the gitterpy directory. Run
     sudo python3 setup.py install
     sudo pip3 install RPIO
 
+Then go back to the main directory, and set up the systemd service to have it start on boot:
+
+    sudo cp gitterLED.service /lib/systemd/system/gitterLED.service
+    sudo chmod 644 /lib/systemd/system/gitterLED.service
+    sudo systemctl enable gitterLED.service
+    sudo systemctl start gitterLED
+
 I might have missed some dependencies, but feel free to submit an issue if that's the case.
 
 Here's a [video](https://www.youtube.com/watch?v=7hQOwxnkIEM) of the thing in action, and a long blabber about the code.
