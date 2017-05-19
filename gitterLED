@@ -11,6 +11,7 @@ RPIO.setup(LED, RPIO.OUT, initial=RPIO.LOW)
 username = 'dumle29'
 gitter_token = ""
 room_name = "scanlime/live"
+#room_name = "dumle29/api-test"
 gitter = gitterest.Gitter(gitter_token)
 unreadMention = "0"
 exit = False
@@ -37,9 +38,9 @@ class chatEater (threading.Thread):
                     mentions = parsed_json['mentions']
                 else:
                     mentions = []
-
-                print("postID: {}\n unread: {}\nmentions: {}\n".format(postID, unread, mentions))
-
+                
+                #print("postID: {}\n unread: {}\nmentions: {}\n".format(postID, unread, mentions))
+                
                 for mention in mentions:
                     if mention['screenName'] == username:
                         unreadMention = postID
@@ -60,6 +61,7 @@ class unreadChecker (threading.Thread):
                     RPIO.output(LED, True)
                 # Check the stored message
                 response = gitter.getMessage(room_name, unreadMention)
+                print("response {}\n".format(response))
                 unread = response['unread']
                 if not unread:
                     unreadMention = "0"
@@ -79,5 +81,11 @@ unreadCheckerThread = unreadChecker()
 # Start the threads
 chatEaterThread.start()
 unreadCheckerThread.start()
+RPIO.output(LED, True)
+sleep(2)
+RPIO.output(LED, False)
+sleep(2)
 chatEaterThread.join()
 unreadCheckerThread.join()
+
+RPIO.cleanup()
