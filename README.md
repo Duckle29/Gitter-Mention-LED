@@ -7,7 +7,7 @@ Use your personal token for the token, as this is needed to automatically clear 
 
 Find your token [here](https://developer.gitter.im/apps)  
 
-To install, first enter the gitterpy directory. Run
+To install, first enter the gitterest directory. Run
 
     sudo python3 setup.py install
     sudo pip3 install RPIO
